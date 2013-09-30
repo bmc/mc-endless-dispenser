@@ -13,6 +13,9 @@ adjacent to it and put the phrase `<endless>` on one line of the sign.
 (The sign can contain other information, but one line _must_ contain _only_
 the phrase `<endless>`.)
 
+"Adjacent", for this plugin, means "directly next to", but does _not_ include
+diagonals.
+
 **NOTE:** A sign that's _attached_ to a dispenser will _not_ work. The sign
 must be _adjacent_ to the dispenser, not attached to it. (That restriction
 allows the plugin to play better with other plugins, such as [Lockette][],
@@ -20,8 +23,7 @@ which place special requirements on attaching signs.)
 
 [Lockette]: http://dev.bukkit.org/bukkit-plugins/lockette/
 
-"Adjacent", for this plugin, means "directly next to", but does _not_ include
-diagonals. The following diagram shows legal placements. (Note: The diagram does
+The following diagram shows legal placements. (Note: The diagram does
 _not_ show signs directly above and below the dispenser, but those placements,
 while uncommon, are also legal.)
 
