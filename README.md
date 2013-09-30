@@ -9,7 +9,10 @@ everyone can create endless dispensers.
 ## Marking a Dispenser as Endless
 
 To mark a dispenser as endless, put a sign on a block that's immediately
-adjacent to it and put the phrase "<endless>" on one line of the sign.
+adjacent to it and put the phrase `<endless>` on one line of the sign.
+(The sign can contain other information, but one line _must_ contain _only_
+the phrase `<endless>`.)
+
 "Adjacent", for this plugin, means "directly next to", but does _not_ include
 diagonals. The following diagram shows legal placements. (Note: The diagram does
 _not_ show signs directly above and below the dispenser, but those placements,
