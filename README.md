@@ -38,7 +38,7 @@ endless.
 An endless dispenser will behave _exactly_ like a regular dispenser, until
 there's only one item left in the dispenser's inventory. When the endless
 dispenser has dispensed its last item, the EndlessDispenser plugin will
-reload the dispenser with a single item of the same time. This behavior has
+reload the dispenser with a single item of the same type. This behavior has
 several implications:
 
 1. You only have to put a single item in the dispenser. It'll dispense and
