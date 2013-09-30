@@ -1,0 +1,7 @@
+.envrc
+.gradle
+build
+.idea
+*.iml
+tmp
+downloads/*.jar

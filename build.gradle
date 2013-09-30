@@ -1,0 +1,170 @@
+apply plugin: 'scala'
+apply plugin: 'java'
+apply plugin: 'idea'
+
+import groovy.io.FileType
+import java.util.regex.Pattern
+
+defaultTasks 'build'
+//defaultTasks 'compileScala'
+
+repositories {
+  mavenCentral()
+  mavenLocal()
+  maven {
+    url "http://repo.bukkit.org/content/repositories/snapshots/"
+  }
+  maven {
+    url "http://maven.clapper.org/"
+  }
+}
+
+def compileLibJars = files(Util.getJars("lib"))
+
+ext.mclibVersion = "0.3"
+ext.home = System.properties['user.home']
+ext.mavenLocal = "${ext.home}/.m2/repository"
+ext.ivyLocal = "${ext.home}/.ivy2/local"
+ext.ivyCache = "${ext.home}/.ivy2/cache"
+
+dependencies {
+  runtime "org.scala-lang:scala-library:2.10.2"
+  compile "org.scala-lang:scala-compiler:2.10.2"
+  // When calling anything directly on the Bukkit object, the Servlet API
+  // is (often) required to avoid weird compilation errors related to a
+  // stub version included in the Bukket jar.
+  compile "javax.servlet:servlet-api:2.5"
+  compile "org.bukkit:bukkit:1.6.4-R0.1-SNAPSHOT"
+  compile "org.bukkit:craftbukkit:1.6.4-R0.1-SNAPSHOT"
+  compile "org.clapper.minecraft:mclib:${ext.mclibVersion}"
+  compile compileLibJars
+}
+
+// --------------------------------------------------------------------------
+// Tasks
+// --------------------------------------------------------------------------
+
+tasks.withType(ScalaCompile) {
+  scalaCompileOptions.useAnt = false
+  scalaCompileOptions.additionalParameters = ["-feature"]
+
+  configure(scalaCompileOptions.forkOptions) {
+    memoryMaximumSize = '1g'
+  }
+
+  classpath += files(Util.getJars("lib"))
+}
+
+task zip(type: Zip, dependsOn: 'jar') {
+
+  archiveName "mc-endless-dispenser.zip"
+  includeEmptyDirs false
+
+  ext.mavenLocal = project.ext.mavenLocal
+  ext.ivyLocal = project.ext.ivyLocal
+  ext.ivyCache = project.ext.ivyCache
+  ext.mclibVersion = project.ext.mclibVersion
+  ext.jcdc = "${ext.ivyLocal}/jcdc.pluginfactory"
+
+  destinationDir file("build/distributions")
+
+  from fileTree('build/libs/'), {
+    include "*.jar"
+  }
+  from fileTree("${ext.mavenLocal}/org/clapper/minecraft/mclib/${ext.mclibVersion}/"), {
+    include "**/*.jar"
+  }
+  from fileTree("${ext.jcdc}/scala-library-plugin_2.10/2.10.2/jars"), {
+    include "*.jar"
+  }
+  from fileTree("${ext.jcdc}/scala-plugin-api_2.10/0.3.1/jars"), {
+    include "scala-plugin-api_2.10-0.3.1.jar"
+  }
+  from fileTree("${ext.ivyCache}/org.scala-lang/scala-library/jars/") {
+    include "scala-library-2.10.2.jar"
+  }
+  from fileTree('lib'), {
+    include "*.jar"
+  }
+
+  into "/mc-endless-dispenser"
+}
+
+// See http://sethrylan.org/2013/07/02/scala-gradle-scalaconsole.html
+
+scalaConsole.dependsOn(build)
+scalaConsole.classpath += sourceSets.main.output
+task console(dependsOn: "scalaConsole")
+
+// --------------------------------------------------------------------------
+// Task re-configurations
+// --------------------------------------------------------------------------
+
+jar {
+  manifest {
+    def manifestCP = ['../lib/mclib.jar',
+                      'scala-library-plugin-2.10.0.jar',
+                      'scala-plugin-api_2.10-0.3.1.jar',
+                      '../craftbukkit.jar']
+    attributes 'Class-Path': manifestCP.join(" ")
+  }
+}
+
+// --------------------------------------------------------------------------
+// Helper functions
+// --------------------------------------------------------------------------
+
+public class Util {
+
+  static def JAR_PATTERN = ~/.*\.jar$/
+
+  public static def getJars(String path) {
+    return getFiles(path, JAR_PATTERN)
+  }
+
+  public static def getFiles(String path, Pattern pattern) {
+    def dir = new File(path)
+    def list = []
+    dir.eachFileRecurse(FileType.FILES) { file ->
+      if (file.name =~ pattern) {
+        list << file
+      }
+    }
+    return list
+  }
+
+  public static def cleanDirectory(String path, Pattern pattern) {
+    def dir = new File(path)
+    if (dir.exists()) {
+      dir.eachFileRecurse(FileType.FILES) { file ->
+        if (file.name =~ pattern) {
+          println "rm ${file}"
+          file.delete()
+        }
+      }
+    }
+  }
+
+  public static def cleanJars(String path) {
+    cleanDirectory(path, JAR_PATTERN)
+  }
+
+  // See http://stackoverflow.com/questions/17123606
+  public static def downloadFile(String url, File target) {
+    def targetDir = target.getParentFile()
+    if (! targetDir.exists()) {
+      println "Creating directory ${targetDir.getPath()}"
+      targetDir.mkdirs()
+    }
+
+    if (! target.exists()) {
+      println "${target.getPath()} doesn't exist. Downloading it from ${url}"
+      new URL(url).withInputStream { i -> target.withOutputStream { it << i }}
+    }
+  }
+
+  public static def env(String var, String defaultValue) {
+    def value = System.getenv()[var]
+    return value ? value : defaultValue
+  }
+}
