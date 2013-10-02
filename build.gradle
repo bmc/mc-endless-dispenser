@@ -17,11 +17,12 @@ repositories {
   maven {
     url "http://maven.clapper.org/"
   }
+  maven {
+    url "http://dl.bintray.com/joshcough/maven/"
+  }
 }
 
-def compileLibJars = files(Util.getJars("lib"))
-
-ext.mclibVersion = "0.3"
+ext.mclibVersion = "0.4"
 ext.home = System.properties['user.home']
 ext.mavenLocal = "${ext.home}/.m2/repository"
 ext.ivyLocal = "${ext.home}/.ivy2/local"
@@ -37,7 +38,7 @@ dependencies {
   compile "org.bukkit:bukkit:1.6.4-R0.1-SNAPSHOT"
   compile "org.bukkit:craftbukkit:1.6.4-R0.1-SNAPSHOT"
   compile "org.clapper.minecraft:mclib:${ext.mclibVersion}"
-  compile compileLibJars
+  compile "com.joshcough:scala-minecraft-plugin-api_2.10:0.3.2"
 }
 
 // --------------------------------------------------------------------------
@@ -51,8 +52,6 @@ tasks.withType(ScalaCompile) {
   configure(scalaCompileOptions.forkOptions) {
     memoryMaximumSize = '1g'
   }
-
-  classpath += files(Util.getJars("lib"))
 }
 
 task zip(type: Zip, dependsOn: 'jar') {

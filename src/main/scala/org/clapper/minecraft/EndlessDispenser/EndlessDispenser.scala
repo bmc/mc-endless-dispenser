@@ -1,8 +1,6 @@
 package org.clapper.minecraft.EndlessDispenser
 
-import jcdc.pluginfactory.{BukkitEnrichment, ListenersPlugin}
-
-import org.bukkit.entity._
+import com.joshcough.minecraft.{BukkitEnrichment, ListenersPlugin}
 
 import org.clapper.minecraft.lib.{SchedulerUtil, PluginLogging, ScalaPluginExtras}
 import org.clapper.minecraft.lib.Listeners._
