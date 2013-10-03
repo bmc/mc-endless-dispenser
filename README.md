@@ -84,8 +84,8 @@ following commands from a [Cygwin](http://www.cygwin.com/) shell.)
     $ cd mc-endless-dispenser
     $ mkdir -p $WORLD/lib
     $ cp scala-library-2.10.jar $WORLD/lib
-    $ cp mclib-0.2.jar $WORLD/lib/mclib.jar
-    $ cp scala-library-plugin*.jar scala-plugin-api*.jar EndlessDispenser.jar $WORLD/plugins
+    $ cp mclib*.jar $WORLD/lib/mclib.jar
+    $ cp scala-minecraft-plugin-api*.jar EndlessDispenser.jar $WORLD/plugins
 
 Then, restart or reload your Bukkit server.
 
