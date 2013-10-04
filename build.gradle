@@ -107,6 +107,7 @@ task console(dependsOn: "scalaConsole")
 jar {
   manifest {
     def manifestCP = ['../lib/mclib.jar',
+                      '../lib/scala-library-2.10.2.jar',
                       'scala-minecraft-scala-library-2.10-0.3.2.jar',
                       'scala-minecraft-plugin-api_2.10-0.3.2.jar',
                       '../craftbukkit.jar']
