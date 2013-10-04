@@ -26,10 +26,6 @@ ext.version = "0.2"
 
 ext.mclibVersion = "0.4"
 ext.home = System.properties['user.home']
-ext.mavenLocal = "${ext.home}/.m2/repository"
-ext.ivyLocal = "${ext.home}/.ivy2/local"
-ext.ivyCache = "${ext.home}/.ivy2/cache"
-ext.gradleCache = "${ext.home}/.gradle/caches/artifacts-26/filestore"
 
 dependencies {
   runtime "org.scala-lang:scala-library:2.10.2"
