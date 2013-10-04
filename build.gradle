@@ -22,7 +22,7 @@ repositories {
   }
 }
 
-ext.version = "0.2"
+ext.version = "0.3"
 
 ext.mclibVersion = "0.4"
 ext.home = System.properties['user.home']
@@ -40,6 +40,9 @@ dependencies {
   compile "com.joshcough:scala-minecraft-plugin-api_2.10:0.3.2"
 
   runtime("com.joshcough:scala-minecraft-plugin-api_2.10:0.3.2") {
+    transitive = false
+  }
+  runtime("com.joshcough:scala-minecraft-scala-library_2.10:0.3.2") {
     transitive = false
   }
   runtime("org.clapper.minecraft:mclib:${ext.mclibVersion}") {
@@ -104,8 +107,8 @@ task console(dependsOn: "scalaConsole")
 jar {
   manifest {
     def manifestCP = ['../lib/mclib.jar',
-                      'scala-library-plugin-2.10.0.jar',
-                      'scala-plugin-api_2.10-0.3.1.jar',
+                      'scala-minecraft-scala-library-2.10-0.3.2.jar',
+                      'scala-minecraft-plugin-api_2.10-0.3.2.jar',
                       '../craftbukkit.jar']
     attributes 'Class-Path': manifestCP.join(" ")
   }
