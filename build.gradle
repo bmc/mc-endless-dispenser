@@ -22,9 +22,9 @@ repositories {
   }
 }
 
-ext.version = "0.3"
+ext.version = "0.4"
 
-ext.mclibVersion = "0.4"
+ext.mclibVersion = "0.5"
 ext.home = System.properties['user.home']
 
 dependencies {
