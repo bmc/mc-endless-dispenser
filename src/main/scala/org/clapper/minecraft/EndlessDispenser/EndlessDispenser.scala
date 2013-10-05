@@ -73,7 +73,8 @@ class EndlessDispenserPlugin
       newPotion.toItemStack(1)
     }
     else {
-      new ItemStack(material, 1)
+      //new ItemStack(material, 1)
+      item.clone()
     }
 
     val enchantments = item.getEnchantments.
