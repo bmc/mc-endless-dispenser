@@ -1,6 +1,6 @@
 name: EndlessDispenser
 main: org.clapper.minecraft.EndlessDispenser.EndlessDispenserPlugin
 author: "Brian M. Clapper"
-version: 0.3
+version: 0.4.1
 depend: [ScalaLibPlugin]
 load: "POSTWORLD"

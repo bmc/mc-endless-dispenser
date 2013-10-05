@@ -70,6 +70,8 @@ class EndlessDispenserPlugin
     val stack = if (material == Material.POTION) {
       val potion = Potion.fromItemStack(item)
       val newPotion = new Potion(potion.getType, potion.getLevel)
+      newPotion.setSplash(potion.isSplash)
+      newPotion.setHasExtendedDuration(potion.hasExtendedDuration)
       newPotion.toItemStack(1)
     }
     else {

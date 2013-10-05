@@ -1,3 +1,6 @@
+0.4.1
+* Now properly preserves splash potions and potion duration.
+
 0.4
 * Endlessly dispensed items now preserve the enchantments (including
   potion types) of the original item.
