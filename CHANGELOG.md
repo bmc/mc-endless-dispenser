@@ -1,3 +1,7 @@
+0.4
+* Endlessly dispensed items now preserve the enchantments (including
+  potion types) of the original item.
+
 0.3
 * Added empty `config.yml`.
 * Zip file now contains `scala-minecraft-scala-library.jar`, as well.

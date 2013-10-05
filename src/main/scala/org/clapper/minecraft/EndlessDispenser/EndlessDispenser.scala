@@ -12,6 +12,7 @@ import org.bukkit.block.{Dispenser, Block, Sign}
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.enchantments.Enchantment
+import org.bukkit.potion.Potion
 
 /** The actual plugin.
   */
@@ -53,26 +54,36 @@ class EndlessDispenserPlugin
     val itemStack    = event.getItem
     val inv          = dispenser.getInventory
     val material     = itemStack.getType
-    val enchantments = itemStack.getEnchantments.
-                                 asScala.
-                                 toMap.    // make immutable
-                                 map {
-                                   case (e: Enchantment, i: Integer) =>
-                                     (e -> i.intValue)
-                                 }
 
     SchedulerUtil.runLater(this) { () =>
       // If we just dispensed the last item, replace it.
       if (! inv.contains(material)) {
         logDebug(s"Reloading endless dispenser.")
-        inv.addItem(createItem(material, enchantments))
+        inv.addItem(createItem(itemStack))
       }
     }
   }
 
-  private def createItem(material:     Material,
-                         enchantments: Map[Enchantment,Int]): ItemStack = {
-    val stack = new ItemStack(material, 1)
+  private def createItem(item: ItemStack): ItemStack = {
+
+    val material = item.getType
+    val stack = if (material == Material.POTION) {
+      val potion = Potion.fromItemStack(item)
+      val newPotion = new Potion(potion.getType, potion.getLevel)
+      newPotion.toItemStack(1)
+    }
+    else {
+      new ItemStack(material, 1)
+    }
+
+    val enchantments = item.getEnchantments.
+                            asScala.
+                            toMap.    // make immutable
+                            map {
+                              case (e: Enchantment, i: Integer) =>
+                                (e -> i.intValue)
+                            }
+
     for ((enchantment, level) <- enchantments)
       stack.addEnchantment(enchantment, level)
 
