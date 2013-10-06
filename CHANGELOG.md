@@ -1,3 +1,8 @@
+0.4.2
+* `plugin.yml` is now generated.
+* Added `gradlew`, so building the project does not require manually
+  downloading Gradle first.
+
 0.4.1
 * Now properly preserves splash potions and potion duration.
 
