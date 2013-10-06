@@ -2,7 +2,7 @@ package org.clapper.minecraft.EndlessDispenser
 
 import com.joshcough.minecraft.{BukkitEnrichment, ListenersPlugin}
 
-import org.clapper.minecraft.lib.{SchedulerUtil, PluginLogging, ScalaPluginExtras}
+import org.clapper.minecraft.lib.{PermissionUtil, SchedulerUtil, PluginLogging, ScalaPluginExtras}
 import org.clapper.minecraft.lib.Listeners._
 
 import scala.collection.JavaConverters._
@@ -13,6 +13,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.potion.Potion
+import scala.util.Failure
 
 /** The actual plugin.
   */

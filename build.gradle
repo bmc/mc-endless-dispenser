@@ -26,9 +26,9 @@ ext.version = "0.4.1"
 
 ext.mclibVersion = "0.6"
 ext.home = System.properties['user.home']
+ext.jc = "com.joshcough:scala-minecraft-plugin-api_2.10:0.3.2"
 
 dependencies {
-  runtime "org.scala-lang:scala-library:2.10.2"
   compile "org.scala-lang:scala-compiler:2.10.2"
   // When calling anything directly on the Bukkit object, the Servlet API
   // is (often) required to avoid weird compilation errors related to a
@@ -37,9 +37,10 @@ dependencies {
   compile "org.bukkit:bukkit:1.6.4-R0.1-SNAPSHOT"
   compile "org.bukkit:craftbukkit:1.6.4-R0.1-SNAPSHOT"
   compile "org.clapper.minecraft:mclib:${ext.mclibVersion}"
-  compile "com.joshcough:scala-minecraft-plugin-api_2.10:0.3.2"
+  compile ext.jc
 
-  runtime("com.joshcough:scala-minecraft-plugin-api_2.10:0.3.2") {
+  runtime "org.scala-lang:scala-library:2.10.2"
+  runtime(ext.jc) {
     transitive = false
   }
   runtime("com.joshcough:scala-minecraft-scala-library_2.10:0.3.2") {
