@@ -120,7 +120,7 @@ task wrapper(type: Wrapper) {
 clean.dependsOn('localClean')
 
 task localClean(type: Delete) {
-  delete project.ext.pluginYaml
+  delete "src/main/resources/plugin.yml"
 }
 
 task zip(dependsOn: ['zipCopy', 'zipJars'])
