@@ -117,6 +117,22 @@ task wrapper(type: Wrapper) {
   gradleVersion = '1.8'
 }
 
+clean.dependsOn('localClean')
+
+task localClean(type: Delete) {
+  delete project.ext.pluginYaml
+}
+
+task zip(dependsOn: ['zipCopy', 'zipJars'])
+
+task zipCopy(type: Copy, dependsOn: 'jar') {
+  from fileTree('build/libs') {
+    include "*.jar"
+  }
+  from configurations.runtime.files
+  into 'build/zipcopy'
+}
+
 // See http://sethrylan.org/2013/07/02/scala-gradle-scalaconsole.html
 
 scalaConsole.dependsOn(build)
