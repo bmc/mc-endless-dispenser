@@ -74,11 +74,11 @@ that, you'll need the following:
 
 ## Installing the Plugin
 
-Unpack the `mc-endless-dispenser.zip` file you built above. Unzipping will
-result in an `mc-endless-dispenser` subdirectory containing numerous jar files.
-Assuming the top-level directory of your Minecraft world is `$WORLD`, issue the
-following commands. (These commands are suitable for Unix and Mac systems. If
-you're on Windows, either use the appropriate Windows commands or run the
+Unpack the zip file you built above.  Unzipping will result in an
+`mc-endless-dispenser` subdirectory containing numerous jar files. Assuming
+the top-level directory of your Minecraft world is `$WORLD`, issue the
+following commands. (These commands are suitable for Unix and Mac systems.
+If you're on Windows, either use the appropriate Windows commands or run the
 following commands from a [Cygwin](http://www.cygwin.com/) shell.)
 
     $ cd mc-endless-dispenser
@@ -87,7 +87,10 @@ following commands from a [Cygwin](http://www.cygwin.com/) shell.)
     $ cp mclib*.jar $WORLD/lib/mclib.jar
     $ cp scala-minecraft-plugin-api*.jar EndlessDispenser.jar $WORLD/plugins
 
-Then, restart or reload your Bukkit server.
+This plugin also relies on the [Vault][] plugin; you will need to install
+Vault separately.
+
+Then, restart or reload your server.
 
 # Plugin Configuration
 
