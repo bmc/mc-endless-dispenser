@@ -33,8 +33,8 @@ class EndlessDispenserPlugin
     OnBlockDispense { handleBlockDispense(_) }
   )
 
-  val configuration = ConfigUtil.get(this)
-  val preserveEnchantments = configuration.booleanValue(
+  lazy val configuration = ConfigUtil.get(this)
+  lazy val preserveEnchantments = configuration.booleanValue(
     "preserve_enchantments", false
   )
 
