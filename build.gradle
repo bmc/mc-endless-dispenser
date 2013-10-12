@@ -23,12 +23,12 @@ repositories {
   }
 }
 
-ext.version     = "0.4.2"
+ext.version     = "0.5"
 ext.pluginName  = "EndlessDispenser"
 ext.pluginClass = "org.clapper.minecraft.EndlessDispenser.EndlessDispenserPlugin"
 ext.author      = "Brian M. Clapper"
 
-ext.mclibVersion = "0.6"
+ext.mclibVersion = "0.7"
 ext.home = System.properties['user.home']
 ext.jc = "com.joshcough:scala-minecraft-plugin-api_2.10:0.3.2"
 
@@ -99,6 +99,8 @@ task zipJars(type: Zip) {
   into "/mc-endless-dispenser"
 }
 
+processResources.dependsOn('createPluginYaml')
+
 task createPluginYaml(type: Copy) {
   from("templates") {
     include "plugin.yml"
@@ -121,16 +123,6 @@ clean.dependsOn('localClean')
 
 task localClean(type: Delete) {
   delete "src/main/resources/plugin.yml"
-}
-
-task zip(dependsOn: ['zipCopy', 'zipJars'])
-
-task zipCopy(type: Copy, dependsOn: 'jar') {
-  from fileTree('build/libs') {
-    include "*.jar"
-  }
-  from configurations.runtime.files
-  into 'build/zipcopy'
 }
 
 // See http://sethrylan.org/2013/07/02/scala-gradle-scalaconsole.html

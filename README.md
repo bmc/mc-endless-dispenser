@@ -94,7 +94,12 @@ Then, restart or reload your server.
 
 # Plugin Configuration
 
-The plugin currently doesn't have any configuration.
+Configuration is self-explanatory.  When the plugin comes up, it creates a
+`plugins/EndlessDispenser` directory, if that directory doesn't exist. If you
+want to override the default configuration, download a copy of
+`src/main/resources/config.yml` from this repo, edit it, install it in that
+directory, and restart or reload your server. The comments in the `config.yml`
+file explain what each configuration item does.
 
 # Plugin Permissions
 

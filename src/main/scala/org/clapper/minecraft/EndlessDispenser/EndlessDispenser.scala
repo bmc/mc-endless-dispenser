@@ -28,6 +28,8 @@ class EndlessDispenserPlugin
   import org.clapper.minecraft.lib.Implicits.Logging._
   import org.clapper.minecraft.lib.Implicits.Block._
 
+  private lazy val configuration = ConfigData(this)
+
   val listeners = List(
     OnBlockDispense { handleBlockDispense(_) }
   )
@@ -88,11 +90,19 @@ class EndlessDispenserPlugin
                                 (e -> i.intValue)
                             }
 
-    for ((enchantment, level) <- enchantments)
-      stack.addEnchantment(enchantment, level)
+    if (configuration.preserveEnchantments) {
+      for ((enchantment, level) <- enchantments)
+        stack.addEnchantment(enchantment, level)
+    }
+
+    else {
+      for ((enchantment, level) <- enchantments)
+        stack.removeEnchantment(enchantment)
+    }
 
     stack
   }
+
   private def isEndlessDispenser(block: Block) = {
     (block.getType == Material.DISPENSER) &&
     (block.solidNeighbors.filter { isMagicSign(_) }.length > 0)

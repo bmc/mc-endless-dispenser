@@ -1,1 +1,6 @@
-# Empty config
+# "preserveEnchantments" determines whether or not the dispenser strips
+# or preserves enchantments on the items it dispenses. If set to "true",
+# the dispenser will ensure that dispensed items have the same enchantments
+# as the item in the dispenser. If set to "false", the dispenser will strip
+# any enchantments and dispense a vanilla object.
+preserve_enchantments: false
