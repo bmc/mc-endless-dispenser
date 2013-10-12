@@ -2,13 +2,14 @@ package org.clapper.minecraft.EndlessDispenser
 
 import com.joshcough.minecraft.{BukkitEnrichment, ListenersPlugin}
 
-import org.clapper.minecraft.lib.{PermissionUtil, SchedulerUtil, PluginLogging, ScalaPluginExtras}
+import org.clapper.minecraft.lib.{ConfigUtil, SchedulerUtil,
+                                  PluginLogging, ScalaPluginExtras}
 import org.clapper.minecraft.lib.Listeners._
 
 import scala.collection.JavaConverters._
 
-import org.bukkit.event.block._
 import org.bukkit.block.{Dispenser, Block, Sign}
+import org.bukkit.event.block.BlockDispenseEvent
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.enchantments.Enchantment
@@ -28,10 +29,13 @@ class EndlessDispenserPlugin
   import org.clapper.minecraft.lib.Implicits.Logging._
   import org.clapper.minecraft.lib.Implicits.Block._
 
-  private lazy val configuration = ConfigData(this)
-
   val listeners = List(
     OnBlockDispense { handleBlockDispense(_) }
+  )
+
+  val configuration = ConfigUtil.get(this)
+  val preserveEnchantments = configuration.booleanValue(
+    "preserve_enchantments", false
   )
 
   override def onEnable(): Unit = {
@@ -90,7 +94,7 @@ class EndlessDispenserPlugin
                                 (e -> i.intValue)
                             }
 
-    if (configuration.preserveEnchantments) {
+    if (preserveEnchantments) {
       for ((enchantment, level) <- enchantments)
         stack.addEnchantment(enchantment, level)
     }
