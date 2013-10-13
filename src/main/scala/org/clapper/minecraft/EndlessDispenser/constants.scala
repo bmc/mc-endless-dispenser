@@ -12,7 +12,6 @@ private[EndlessDispenser] object Constants {
 
   val MaterialMap = Map(
     "activator rail"       -> Material.ACTIVATOR_RAIL,
-    "air"                  -> Material.AIR,
     "anvil"                -> Material.ANVIL,
     "apple"                -> Material.APPLE,
     "arrow"                -> Material.ARROW,
