@@ -1,3 +1,8 @@
+0.5
+* Added configuration support, allowing specification of the materials that
+  can be dispensed, as well as the ability *not* to preserve enchantments
+  on dispensed items.
+
 0.4.2
 * `plugin.yml` is now generated.
 * Added `gradlew`, so building the project does not require manually

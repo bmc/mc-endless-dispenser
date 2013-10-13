@@ -4,3 +4,299 @@
 # as the item in the dispenser. If set to "false", the dispenser will strip
 # any enchantments and dispense a vanilla object.
 preserve_enchantments: false
+
+# This list defines the kinds of items that may be dispensed by an
+# Endless Dispenser. If a player puts an item that ISN'T in this list
+# into an endless dispenser, the dispenser will just behave as a normal
+# dispenser (though it'll warn the player).
+#
+# Special notes:
+#
+# 1. Some material types stand for multiple kinds of items. For instance,
+#    "ink sack" covers all types of dye (including lapis lazuli). So, if you
+#    remove "ink sack" from the list, you'll prevent Endless Dispensers from
+#    endlessly dispensing ANY kind of dye.
+allowed_materials:
+- activator rail
+- air
+- anvil
+- apple
+- arrow
+- baked potato
+- beacon
+- bed
+- bedrock
+- birch wood stairs
+- blaze powder
+- blaze rod
+- boat
+- bone
+- book
+- book and quill
+- bookshelf
+- bow
+- bowl
+- bread
+- brewing stand
+- brick
+- brick stairs
+- brown mushroom
+- bucket
+- cactus
+- cake
+- carpet
+- carrot
+- carrot stick
+- cauldron
+- chainmail boots
+- chainmail chestplate
+- chainmail helmet
+- chainmail leggings
+- chest
+- clay
+- clay ball
+- clay brick
+- coal
+- coal ore
+- cobble wall
+- cobblestone
+- cobblestone stairs
+- cocoa
+- compass
+- cooked beef
+- cooked chicken
+- cooked fish
+- cookie
+- crops
+- daylight detector
+- detector rail
+- diamond
+- diamond axe
+- diamond barding
+- diamond boots
+- diamond chestplate
+- diamond helmet
+- diamond hoe
+- diamond leggings
+- diamond ore
+- diamond pickaxe
+- diamond spade
+- diamond sword
+- diode
+- dirt
+- dispenser
+- dragon egg
+- dropper
+- egg
+- emerald
+- emerald ore
+- empty map
+- enchanted book
+- enchantment table
+- ender chest
+- ender pearl
+- ender stone
+- exp bottle
+- eye of ender
+- feather
+- fence
+- fence gate
+- fermented spider eye
+- firework
+- firework charge
+- fishing rod
+- flint
+- flint and steel
+- flower pot
+- furnace
+- ghast tear
+- glass
+- glass bottle
+- glowstone
+- glowstone dust
+- gold axe
+- gold barding
+- gold boots
+- gold chestplate
+- gold helmet
+- gold hoe
+- gold ingot
+- gold leggings
+- gold nugget
+- gold ore
+- gold pickaxe
+- gold plate
+- gold record
+- gold spade
+- gold sword
+- golden apple
+- golden carrot
+- grass
+- gravel
+- grilled pork
+- hard clay
+- hopper
+- ice
+- ink sack
+- iron axe
+- iron barding
+- iron boots
+- iron chestplate
+- iron door
+- iron fence
+- iron helmet
+- iron hoe
+- iron ingot
+- iron leggings
+- iron ore
+- iron pickaxe
+- iron plate
+- iron spade
+- iron sword
+- item frame
+- jukebox
+- jungle wood stairs
+- ladder
+- lapis ore
+- lava bucket
+- leash
+- leather
+- leather boots
+- leather chestplate
+- leather helmet
+- leather leggings
+- leaves
+- lever
+- log
+- long grass
+- magma cream
+- map
+- melon
+- melon seeds
+- melon stem
+- minecart
+- mob spawner
+- monster egg
+- monster eggs
+- mossy cobblestone
+- mushroom soup
+- mycel
+- name tag
+- nether brick
+- nether brick stairs
+- nether fence
+- nether stalk
+- nether star
+- nether warts
+- netherrack
+- obsidian
+- painting
+- paper
+- piston
+- poisonous potato
+- pork
+- portal
+- potato
+- potion
+- powered minecart
+- powered rail
+- pumpkin
+- pumpkin pie
+- pumpkin seeds
+- pumpkin stem
+- quartz
+- quartz ore
+- quartz stairs
+- rails
+- raw beef
+- raw chicken
+- raw fish
+- record 10
+- record 11
+- record 12
+- record 3
+- record 4
+- record 5
+- record 6
+- record 7
+- record 8
+- record 9
+- red mushroom
+- red rose
+- redstone
+- redstone comparator
+- redstone ore
+- redstone wire
+- rotten flesh
+- saddle
+- sand
+- sandstone
+- sandstone stairs
+- sapling
+- seeds
+- shears
+- sign
+- sign post
+- skull
+- slime ball
+- smooth brick
+- smooth stairs
+- snow
+- snow ball
+- soil
+- soul sand
+- speckled melon
+- spider eye
+- sponge
+- spruce wood stairs
+- stained clay
+- stationary lava
+- stationary water
+- step
+- stick
+- sticky piston
+- stone
+- stone axe
+- stone button
+- stone hoe
+- stone pickaxe
+- stone plate
+- stone spade
+- stone sword
+- storage minecart
+- string
+- sugar
+- sugar cane
+- sulphur
+- thin glass
+- tnt
+- torch
+- trap door
+- trapped chest
+- tripwire
+- tripwire hook
+- vine
+- wall sign
+- watch
+- water
+- water bucket
+- water lily
+- web
+- wheat
+- wood
+- wood axe
+- wood button
+- wood door
+- wood double step
+- wood hoe
+- wood pickaxe
+- wood plate
+- wood spade
+- wood stairs
+- wood step
+- wood sword
+- wooden door
+- wool
+- workbench
+- written book
+- yellow flower
