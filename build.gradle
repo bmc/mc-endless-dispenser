@@ -6,7 +6,7 @@ import groovy.io.FileType
 import java.util.regex.Pattern
 import org.apache.tools.ant.filters.ReplaceTokens
 
-project.version = "0.5"
+version = "0.5"
 
 defaultTasks 'build'
 //defaultTasks 'compileScala'
@@ -23,6 +23,11 @@ repositories {
   maven {
     url "http://dl.bintray.com/joshcough/maven/"
   }
+}
+
+// See http://goo.gl/sN5GVB
+configurations {
+  sshAntTask
 }
 
 ext.pluginClass = "org.clapper.minecraft.EndlessDispenser.EndlessDispenserPlugin"
@@ -53,6 +58,8 @@ dependencies {
   runtime("org.clapper.minecraft:mclib:${ext.mclibVersion}") {
     transitive = false
   }
+
+  sshAntTask "org.apache.ant:ant-jsch:1.9.2", "com.jcraft:jsch:0.1.50"
 }
 
 // --------------------------------------------------------------------------
@@ -83,7 +90,7 @@ task zipCleanup(type: Delete) {
 }
 
 task zipJars(type: Zip) {
-  archiveName "mc-endless-dispenser-${project.version}.zip"
+  archiveName "mc-endless-dispenser-${version}.zip"
   includeEmptyDirs false
   finalizedBy 'zipCleanup'
 
@@ -107,7 +114,7 @@ task createPluginYaml(type: Copy) {
   }
   into 'src/main/resources'
   filter(ReplaceTokens, tokens: [
-    version: project.version,
+    version: version,
     name:    project.name,
     class:   project.ext.pluginClass,
     genTime: new Date().format("yyyy/MM/dd HH:mm:ss"),
@@ -125,11 +132,30 @@ task localClean(type: Delete) {
   delete "src/main/resources/plugin.yml"
 }
 
-// See http://sethrylan.org/2013/07/02/scala-gradle-scalaconsole.html
+// Publish the zip file to the remote server.
+task publish(dependsOn: 'zip') {
 
-scalaConsole.dependsOn(build)
-scalaConsole.classpath += sourceSets.main.output
-task console(dependsOn: "scalaConsole")
+  // Get the passphrase from the user.
+  def console = System.console()
+  def passphrase = console.readPassword("\n%s: ", "SSH keyfile passphrase")
+
+  // Redefine the scp Ant task, with our classpath.
+  ant.taskdef(name:      'scp',
+    classname: 'org.apache.tools.ant.taskdefs.optional.ssh.Scp',
+    classpath: configurations.sshAntTask.asPath)
+
+  // Invoke the scp Ant task. (Use "gradle -i publish" to see SSH output.)
+  // Assumes PUBLISH_TO and SSH_KEYFILE are set in the environment (e.g.,
+  // via a direnv ".envrc" file).
+  ant.scp(todir:      System.env["PUBLISH_TO"] + "/" + "mc-endless-dispenser",
+    keyfile:    System.env["SSH_KEYFILE"],
+    passphrase: passphrase as String,
+    verbose:    'true') {
+    fileset(dir: 'build/distributions') {
+      include(name: '*.zip')
+    }
+  }
+}
 
 // --------------------------------------------------------------------------
 // Task re-configurations

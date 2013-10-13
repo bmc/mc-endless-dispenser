@@ -60,21 +60,26 @@ several implications:
 
 # Getting the Plugin
 
-Currently, the only way to get the plugin is to build it from source. To do
-that, you'll need the following:
+You can either download a precompiled version of the plugin or compile it
+yourself.
 
-* A Java JDK (preferably Java 7).
-* A recent version of [Gradle](http://gradle.org).
+## Downloading the Plugin
+
+You can download the compiled plugin from
+<http://download.clapper.org/mc-endless-dispenser/>.
 
 ## Building the Plugin
 
 * Check out the repo.
-* Run: `gradle zip`
-* The resulting distribution is in `build/distributions/mc-endless-dispenser.zip`.
+* Run: `./gradlew zip` (or, on Windows, `gradlew.bat zip`). The (local)
+  `gradlew` script will handle downloading the appropriate version of Gradle
+  and running the build.
+* The resulting distribution is in `build/distributions/mc-endless-dispenser-VERSION.zip`
+  where `VERSION` is the current version of the plugin.
 
-## Installing the Plugin
+# Installing the Plugin
 
-Unpack the zip file you built above.  Unzipping will result in an
+Unpack the zip file you built or downloaded above.  Unzipping will result in an
 `mc-endless-dispenser` subdirectory containing numerous jar files. Assuming
 the top-level directory of your Minecraft world is `$WORLD`, issue the
 following commands. (These commands are suitable for Unix and Mac systems.
