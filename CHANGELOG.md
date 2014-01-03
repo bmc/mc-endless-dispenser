@@ -1,3 +1,6 @@
+0.6
+* Rebuilt for 1.7.2
+
 0.5
 * Added configuration support, allowing specification of the materials that
   can be dispensed, as well as the ability *not* to preserve enchantments
