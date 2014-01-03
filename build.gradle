@@ -6,7 +6,7 @@ import groovy.io.FileType
 import java.util.regex.Pattern
 import org.apache.tools.ant.filters.ReplaceTokens
 
-version = "0.5"
+version = "0.6"
 
 defaultTasks 'build'
 //defaultTasks 'compileScala'
@@ -23,6 +23,10 @@ repositories {
   maven {
     url "http://dl.bintray.com/joshcough/maven/"
   }
+  maven {
+    url "http://repo.md-5.net/content/repositories/snapshots"
+  }
+
 }
 
 // See http://goo.gl/sN5GVB
@@ -43,8 +47,11 @@ dependencies {
   // is (often) required to avoid weird compilation errors related to a
   // stub version included in the Bukket jar.
   compile "javax.servlet:servlet-api:2.5"
-  compile "org.bukkit:bukkit:1.6.4-R0.1-SNAPSHOT"
-  compile "org.bukkit:craftbukkit:1.6.4-R0.1-SNAPSHOT"
+  //compile "org.bukkit:bukkit:1.6.4-R0.1-SNAPSHOT"
+  //compile "org.bukkit:craftbukkit:1.6.4-R0.1-SNAPSHOT"
+  compile "org.spigotmc:spigot-api:1.7.2-R0.1-SNAPSHOT"
+  compile "org.spigotmc:spigot:1.7.2-R0.1-SNAPSHOT"
+
   compile "org.clapper.minecraft:mclib:${ext.mclibVersion}"
   compile ext.jc
 
@@ -133,7 +140,7 @@ task localClean(type: Delete) {
 }
 
 // Publish the zip file to the remote server.
-task publish(dependsOn: 'zip') {
+task publish(dependsOn: 'zip') << {
 
   // Get the passphrase from the user.
   def console = System.console()
