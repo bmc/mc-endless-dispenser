@@ -6,3 +6,4 @@ build
 tmp
 downloads/*.jar
 src/main/resources/plugin.yml
+*.xml
