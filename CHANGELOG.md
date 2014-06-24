@@ -1,3 +1,6 @@
+0.7
+* Rebuilt for 1.7.9
+
 0.6
 * Rebuilt for 1.7.2
 

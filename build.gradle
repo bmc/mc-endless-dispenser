@@ -6,7 +6,7 @@ import groovy.io.FileType
 import java.util.regex.Pattern
 import org.apache.tools.ant.filters.ReplaceTokens
 
-version = "0.6"
+version = "0.7"
 
 defaultTasks 'build'
 //defaultTasks 'compileScala'
@@ -47,11 +47,12 @@ dependencies {
   // is (often) required to avoid weird compilation errors related to a
   // stub version included in the Bukket jar.
   compile "javax.servlet:servlet-api:2.5"
-  //compile "org.bukkit:bukkit:1.6.4-R0.1-SNAPSHOT"
-  //compile "org.bukkit:craftbukkit:1.6.4-R0.1-SNAPSHOT"
+  compile "org.bukkit:bukkit:1.7.9-R0.2-SNAPSHOT"
+  compile "org.bukkit:craftbukkit:1.7.9-R0.2-SNAPSHOT"
+/*
   compile "org.spigotmc:spigot-api:1.7.2-R0.1-SNAPSHOT"
   compile "org.spigotmc:spigot:1.7.2-R0.1-SNAPSHOT"
-
+*/
   compile "org.clapper.minecraft:mclib:${ext.mclibVersion}"
   compile ext.jc
 
